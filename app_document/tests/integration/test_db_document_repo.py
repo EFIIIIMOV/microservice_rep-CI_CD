@@ -61,9 +61,8 @@ def test_get_document_by_id_error(document_repo: DocumentRepo) -> None:
 
 def test_add_second_document(first_document: Document, second_document: Document, document_repo: DocumentRepo) -> None:
     assert document_repo.create_document(second_document) == second_document
-    documents = []
-    documents.append(document_repo.get_document_by_id(first_document.doc_id))
-    documents.append(document_repo.get_document_by_id(second_document.doc_id))
+    documents = [document_repo.get_document_by_id(first_document.doc_id),
+                 document_repo.get_document_by_id(second_document.doc_id)]
     assert len(documents) == 2
     assert documents[0] == first_document
     assert documents[1] == second_document

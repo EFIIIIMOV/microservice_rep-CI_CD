@@ -61,10 +61,10 @@ def test_get_order_by_id_error(order_repo: OrderRepo) -> None:
 
 def test_add_second_order(first_order: Order, second_order: Order, order_repo: OrderRepo) -> None:
     assert order_repo.create_order(second_order) == second_order
-    deliveries = order_repo.get_order()
-    assert len(deliveries) == 2
-    assert deliveries[0] == first_order
-    assert deliveries[1] == second_order
+    orders = [order_repo.get_order_by_id(first_order.ord_id), order_repo.get_order_by_id(second_order.ord_id)]
+    assert len(orders) == 2
+    assert orders[0] == first_order
+    assert orders[1] == second_order
 
 
 def test_set_status(first_order: Order, order_repo: OrderRepo) -> None:
