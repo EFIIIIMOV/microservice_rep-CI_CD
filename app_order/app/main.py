@@ -10,7 +10,6 @@ from fastapi import FastAPI
 # from app.endpoints.document_router import document_router
 
 app = FastAPI(title='Service')
-
 app.include_router(order_router, prefix='/api')
 
 
